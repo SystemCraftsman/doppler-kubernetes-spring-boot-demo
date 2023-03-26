@@ -2,7 +2,10 @@ package com.systemcraftsman.demo.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
+import java.util.Random;
 
 @Entity
 public class PaymentTransaction {
@@ -12,8 +15,8 @@ public class PaymentTransaction {
 
     private String owner;
 
-    @Basic(optional = false)
-    @Column(name = "CreateTime", insertable = false, updatable = false)
+    private BigDecimal amount;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
@@ -37,10 +40,12 @@ public class PaymentTransaction {
     }
 
     public Date getCreateTime() {
+        createTime = new Date();
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public BigDecimal getAmount() {
+        amount = new BigDecimal(BigInteger.valueOf(new Random().nextInt(100001)), 2);
+        return amount;
     }
 }

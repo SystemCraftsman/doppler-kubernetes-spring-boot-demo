@@ -4,6 +4,7 @@ import com.systemcraftsman.demo.model.PaymentTransaction;
 import com.systemcraftsman.demo.repository.PaymentTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,8 @@ public class PaymentTransactionController {
         return repository.findAll();
     }
 
-    @PostMapping("/transactions")
+    @PostMapping(value = "/transactions",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     PaymentTransaction addTransaction(@RequestBody PaymentTransaction transaction) {
         return repository.save(transaction);
