@@ -9,6 +9,7 @@ import java.util.Random;
 
 @Entity
 public class PaymentTransaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
